@@ -4,7 +4,7 @@ import java.util.List;
 
 public class NumbersStorageService {
 
-    private static final String STORAGE_FILENAME = "/home/hp/IdeaProjects/Internship/src/com/internship/project/intexsoft/resources/numbers.txt";
+    private static final String STORAGE_FILENAME = "/home/hp/IdeaProjects/Internship_Intexsoft/Internship/src/com/internship/project/intexsoft/resources/numbers.txt";
 
     public final void writeNumbers(List<Integer> numbers) {
 
