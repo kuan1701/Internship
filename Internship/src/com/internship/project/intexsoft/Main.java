@@ -10,12 +10,9 @@ public class Main {
         System.out.println("Please enter a number:");
 
         ThingServiceImpl thingService = new ThingServiceImpl();
-
-        Thing thing = new Thing();
-
-        thingService.getThingMessage(thing);
+        thingService.getThingMessage();
 
         System.out.println("All numbers in an array:");
-        thingService.getNumbers(thing);
+        thingService.getNumbers();
     }
 }

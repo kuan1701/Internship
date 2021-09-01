@@ -1,12 +1,10 @@
 package com.internship.project.intexsoft.service;
 
-import com.internship.project.intexsoft.model.Thing;
-
 public interface ThingService {
 
-    void getThingMessage(Thing thing);
+    void getThingMessage();
 
-    Double getAverageNumber(Thing thing);
+    Double getAverageNumber();
 
-    void getNumbers(Thing thing);
+    void getNumbers();
 }

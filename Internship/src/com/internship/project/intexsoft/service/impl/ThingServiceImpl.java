@@ -4,10 +4,13 @@ import com.internship.project.intexsoft.model.Thing;
 import com.internship.project.intexsoft.service.ThingService;
 import com.internship.project.intexsoft.util.NumbersStorageService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public final class ThingServiceImpl implements ThingService {
+
+    private final Thing thing = new Thing();
 
     private final String SMALLEST_NUMBER = " is the smallest number it has encountered so far.";
     private final String LARGEST_NUMBER = " is the largest number it has encountered so far.";
@@ -17,15 +20,21 @@ public final class ThingServiceImpl implements ThingService {
     private final Integer number = scanner.nextInt();
 
     NumbersStorageService numbersStorageService = new NumbersStorageService();
+    List<Integer> numbers = numbersStorageService.readNumbers();
 
     /**
-     * Checking the entered number and saving it in the array
+     * Here we are assigning values to the fields of entity Thing
+     * and checking the entered number and saving it in the array
      */
     @Override
-    public void getThingMessage(Thing thing) {
+    public void getThingMessage() {
 
-        thing.getNumbers().add(number);
-        numbersStorageService.writeNumbers(thing.getNumbers());
+        thing.setMinNumber(Collections.min(numbers));
+        thing.setMaxNumber(Collections.max(numbers));
+        thing.setAvgNumber(0.0);
+
+        numbers.add(number);
+        numbersStorageService.writeNumbers(numbers);
 
         if (thing.getMinNumber() != null && thing.getMaxNumber() != null && thing.getAvgNumber() != null) {
 
@@ -33,7 +42,7 @@ public final class ThingServiceImpl implements ThingService {
                     (number + SMALLEST_NUMBER) : (number + LARGEST_NUMBER);
 
             if (thing.getMinNumber() < number && number < thing.getMaxNumber()) {
-                thing.setAvgNumber(getAverageNumber(thing));
+                thing.setAvgNumber(getAverageNumber());
             }
             else {
                 System.out.println(answer);
@@ -46,7 +55,7 @@ public final class ThingServiceImpl implements ThingService {
             thing.setMaxNumber(number);
             System.out.println(number + LARGEST_NUMBER);
 
-            thing.setAvgNumber(getAverageNumber(thing));
+            thing.setAvgNumber(getAverageNumber());
             System.out.println(thing.getAvgNumber() + AVERAGE_NUMBER);
         }
     }
@@ -55,7 +64,7 @@ public final class ThingServiceImpl implements ThingService {
      * Calculate the average of all the numbers in the array
      */
     @Override
-    public Double getAverageNumber(Thing thing) {
+    public Double getAverageNumber() {
 
         List<Integer> numbersStorage = numbersStorageService.readNumbers();
 
@@ -74,7 +83,7 @@ public final class ThingServiceImpl implements ThingService {
      * Displaying all numbers in an array
      */
     @Override
-    public void getNumbers(Thing thing) {
+    public void getNumbers() {
 
         List<Integer> numbers = numbersStorageService.readNumbers();
         System.out.println(numbers);
