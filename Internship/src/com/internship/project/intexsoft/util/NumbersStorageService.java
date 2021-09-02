@@ -9,7 +9,6 @@ public class NumbersStorageService {
     public final void writeNumbers(List<Integer> numbers) {
 
         SerializationService.serialize(numbers, STORAGE_FILENAME);
-        System.out.println("Number is saved.");
     }
 
     public final List<Integer> readNumbers() {
